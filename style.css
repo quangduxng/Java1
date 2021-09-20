@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+body{
+            height: auto;
+            width: auto;
+            text-align: center;
+        }
+        table td, table th {
+		    padding: 5px;
+		    border: solid 1px #dddfe2;
+			}
+        .center{      
+		    float: left;
+		    width: 100%;
+		   
+			  display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lop1{
+         width: 10%;
+        }
+         .lop2{
+         width: 95%;
+         display: flex;
+	    align-items: center;
+	    align-content: center;
+	    justify-content: space-around;
+	   
+	    padding-left: 35px;
+        }
+        .lop3{
+            width: 10%;
+    		font-size: 20px;
+    }
+    	#css-bor-bot{
+    	border-left:1px;
+    	border-right:1px;
+    	border-top:1px;
+    	border-bottom:none;
+    	}
+    	#css-bor-top{
+    	border-left:1px;
+    	border-right:1px;
+    	border-top:none;
+    	border-bottom:1px;
+    	}
