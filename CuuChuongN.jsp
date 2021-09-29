@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<title>Xổ Sổ Full</title>
+<title>CuuChuong</title>
 	<style>
 		#center{
 		padding-left: 200px;
@@ -31,9 +31,9 @@
   
   </div>
  	<%
-	String tamn=request.getParameter("txtn");
-	if(tamn!=null) {
-	   Long n=Long.parseLong(tamn);
+	String tamnn=request.getParameter("txtn");
+	if(tamnn!=null) {
+	   Long n=Long.parseLong(tamnn);
 	  if(request.getParameter("xacnhan")!=null)
 	  		{ 
 	  		%>	 
@@ -62,12 +62,6 @@
 	<br>
 	
 
-  </form><%
-  String tamnn=request.getParameter("txtn");
-   if(tamnn!=null){
-	   Long nn=Long.parseLong(tamn);
-	  response.sendRedirect("CuuChuongN.jsp?="+nn.toString() ); //tu load lai trang
-   }   
-%>
+  </form>
 </body>
 </html>

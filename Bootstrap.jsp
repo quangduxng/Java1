@@ -1,3 +1,8 @@
+<%@page import="Bean.sachbean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Bo.sachbo"%>
+<%@page import="Bo.loaibo"%>
+<%@page import="Bean.loaibean"%>
 <%@ page language="java" contentType="text/html; charset=Utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -35,14 +40,26 @@
       <li><a href="lichsumuahang.jps">Lịch sử mua hàng</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-     <button 	 style=" text-decoration:none; font-size:15px" type="button" class="btn-link btn-info btn-lg"> Đăng Ký</button>
-      <button 	 style=" text-decoration:none; font-size:15px" type="button" class="btn-link btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Đăng Nhập</button>
+    
+     	<%String kq=request.getParameter("kt"); 
+		if(kq!=null&& kq.equals("0")){%>
+		 <li><a href="#">Xin chao: <%=request.getParameter("un") %> </a></li>
+           <%}else{ %>
+ 	<button 	 style=" text-decoration:none; font-size:15px" type="button" class="btn-link btn-info btn-lg" data-toggle="modal" data-target="#myModal" > Đăng Nhập</button>   
+              <%  if(kq!=null&&kq.equals("1")){%>
+             		 <script>alert('Dang nhap sai');</script>
+              <%} %>
+           <%} %>
+       <button 	 style=" text-decoration:none; font-size:15px" type="button" class="btn-link btn-info btn-lg" > Đăng Ký</button>   
     </ul>
+    
+    
+    
     <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
-   		<form class="form-signin"  >
+   		<form class="form-signin"  method="post" action="comfirm.jsp"  >
        
               <h1 style="color: #27a2f5; font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">ĐĂNG NHẬP</h1>
         
@@ -65,7 +82,7 @@
                  <input class="placeoholder " name="MatKhau" type="password" placeholder=" Mật Khẩu">
        </p>
        <button	 
-            type="button" class="btn btn-success">
+            type="submit" class="btn btn-success">
                      Đăng Nhập
        </button>
       
@@ -77,9 +94,90 @@
 </div>
   </div>
 </nav>
+<%
+     loaibo lbo= new loaibo();
+     sachbo sbo= new sachbo();
+     String ml= request.getParameter("ml");
+     String key= request.getParameter("key");
+     ArrayList<sachbean> ds= sbo.getsach();
+     if(ml!=null) ds= sbo.TimLoai(ds, ml);
+     else
+    	 if(key!=null) ds=sbo.Tim(ds, key);
+  %>
 <div class="container">
-  <h3>Nội Dung của trang</h3>
-  
+  <table width="1000" align="center" >
+    
+    <tr> 
+       <td valign="top" width="200"> 
+              <table class="table table-hover">
+					 <%for(loaibean sach:lbo.getloai()){%>
+               <a href="Bootstrap.jsp?ml=<%=sach.getMaloai()%>">          
+               <%=sach.getTenloai()%></a>
+               <hr>
+              <%} %>
+            
+              
+              
+              </table>
+        </td>
+       <td valign="top" width="600"> 
+              <table class="table table-hover">
+                  <%
+                  int n=ds.size();
+                  for(int i=0;i<n;i++) {
+                    sachbean s=ds.get(i);
+                  %>
+<tr>
+                       <td>
+                            <img src=image_sach/<%=s.getAnh() %>><br>
+                             <a href="giohang.jsp?ms=<%=s.getMasach()%>&ts=<%=s.getTacgia()%>&gia=<%=s.getGia()%>">
+                             <img src="mua.jpg">
+                             </a> 
+                             <br>
+                             <%=s.getTensach() %> <br>
+                             <%=s.getTacgia()%> <br>
+                             <%=s.getGia()%> <br>
+     					</td>
+							<%i++;
+                         if(i<n){
+                        	 s=ds.get(i);
+                         
+                    		   %><td>
+                            <img src=image_sach/<%=s.getAnh() %>><br>
+                             <a href="giohang.jsp?ms=<%=s.getMasach()%>&ts=<%=s.getTacgia()%>&gia=<%=s.getGia()%>">
+                             <img src="buynow.jpg">
+                             </a> 
+<br>
+                             <%=s.getTensach() %> <br>
+                             <%=s.getTacgia()%> <br>
+                             <%=s.getGia()%> <br>
+                       </td>
+                       <%} %>
+                      
+                 
+                  		<%i++;
+                         if(i<n){
+                        	 s=ds.get(i);
+                         
+                    	   %><td>
+                            <img src=image_sach/<%=s.getAnh() %>><br>
+                             <a href="giohang.jsp?ms=<%=s.getMasach()%>&ts=<%=s.getTacgia()%>&gia=<%=s.getGia()%>">
+                             <img src="buynow.jpg">
+                             </a> 
+<br>
+                             <%=s.getTensach() %> <br>
+                             <%=s.getTacgia()%> <br>
+                             <%=s.getGia()%> <br>
+                       </td>
+                       
+                       
+                       <%} %>
+                    
+                </tr>
+                <%} %>
+              </table>
+                 
+  			
 </div>
 </body>
 </html>

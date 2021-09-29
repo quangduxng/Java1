@@ -7,15 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<p> đăng nhập thành công</p>
-	    <%
-    String user1=request.getParameter("MaSV");
-    String pw1=request.getParameter("password");
-    if(user1=="abc"&& pw1=="123")
-    		{	
-   
-   			response.sendRedirect("login.jsp?ID="+user1+"&pw="+pw1);
-    } %>
+<p>Đăng nhập thành công</p>
+	 <form>
+	 <%
+   String un=request.getParameter("MaSV");
+   String pass=request.getParameter("MatKhau");
+   if(un.equals("haha")&&pass.equals("123")){
+	   response.sendRedirect("Bootstrap.jsp?kt=0&un="+un);
+	   
+   }else
+	   response.sendRedirect("Bootstrap.jsp?kt=1");
+%>
+</form>
 </body>
 </html>

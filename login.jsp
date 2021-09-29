@@ -73,8 +73,8 @@
     }
 </style>
 
-<body">   
-          <form class="form-signin" action="comfirm,jsp" type="post" >
+<body>   
+          <form class="form-signin" action="comfirm.jsp">
        
               <h1 style="color: #27a2f5; font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Sinh viên</h1>
         
@@ -102,16 +102,17 @@
             ">
                      Đăng Nhập
        </button>
-       <%
+      
+    </form>
+    <%
     String user=request.getParameter("MaSV");
     String pw=request.getParameter("password");
-    if(user=="abc"&& pw=="123")
-    		{	
-   
+    if(user=="abc"&& pw=="123" && request.getParameter("dangnhap")!=null)
+    		{	  
    			response.sendRedirect("comfirm.jsp?ID="+user+"&pw="+pw);
-    } %>
-    </form>
-   
+    		}
+    else{ %>
+    
 </div>
 
 </body>
